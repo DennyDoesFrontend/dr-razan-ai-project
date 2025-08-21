@@ -145,27 +145,38 @@ window.onload = () => {
   LOGINBTN?.addEventListener("click", () => showPopup(LOGIN));
   CLOSELOGINBTN?.addEventListener("click", () => hidePopup(LOGIN));
   SIGNINWITHGOOGLE?.addEventListener("click", () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // Mobile → use redirect
+      signInWithRedirect(auth, provider);
+    } else {
+      // Desktop → use popup
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          const user = result.user;
+          console.log("Signed in (popup):", user);
+        })
+        .catch((error) => {
+          console.error("Popup sign-in error:", error.message);
+        });
+    }
   });
+
+  // When page loads, check redirect result
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result?.user) {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+        console.log("Signed in (redirect):", user);
+      }
+    })
+    .catch((error) => {
+      console.error("Redirect sign-in error:", error.message);
+    });
+
   // SIGN IN WITH AN EXISTING ACCOUNT
   SIGNINBTN?.addEventListener("click", handleSignIn);
 };
