@@ -1,12 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link href="/src/style.css" rel="stylesheet" />
+    <title>RazanAI</title>
   </head>
-  <body>
-    <h1 class="text-3xl font-bold underline">Hello Razen!</h1>
-    <a href="./src/pages/chatbot.html">click here to go to your page</a>
+  <body
+    class="bg-[url('/background.svg')] bg-cover bg-center min-h-screen font-poppins"
+  >
+    <!-- Navbar -->
+    <nav
+      class="z-10 fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 xl:w-7/12 flex items-center justify-between px-4 py-2 bg-white border border-slate-300 rounded-md shadow-md"
+    >
+      <div class="flex items-center gap-2">
+        <img class="w-10 sm:w-12" src="/logo-design.png" alt="logo" />
+        <p class="font-semibold text-gray-800 text-sm sm:text-base">RazanAI</p>
+      </div>
+      <button
+        class="login-btn px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition text-sm sm:text-base"
+      >
+        Log In
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main
+      class="pt-28 px-4 sm:px-8 xl:px-[100px] 2xl:px-[250px] max-w-[1400px] mx-auto flex flex-col items-center"
+    >
+      <!-- Hero Section -->
+      <section class="flex flex-col items-center gap-4 text-center w-full">
+        <p
+          class="text-[#222831] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold"
+        >
+          Talk. Diagnose. Understand. With
+          <span class="text-blue-600 name-text"></span>.
+        </p>
+        <p class="text-sm sm:text-base md:text-lg text-[#393E46] max-w-2xl">
+          Our smart medical assistant helps you check symptoms, understand
+          possible conditions, and get guidance on treatments — anytime,
+          anywhere, in just a few clicks.
+        </p>
+        <button
+          class="bg-blue-600 text-white px-6 py-3 rounded-lg text-sm sm:text-base hover:bg-blue-700 transition"
+        >
+          Get Started
+        </button>
+        <img
+          class="mt-6 max-w-full w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%]"
+          src="/desktop.png"
+          alt="desktop preview"
+        />
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="mt-16 w-full flex flex-col items-center gap-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center">
+          How It Works
+        </h2>
+        <div
+          class="w-full flex flex-col sm:flex-col md:flex-row gap-4 justify-center"
+        >
+          <!-- Card 1 -->
+          <div class="bg-white p-4 shadow-md rounded-md flex-1">
+            <div class="flex flex-col gap-2">
+              <span class="flex items-center gap-2">
+                <img class="w-4" src="/diamond.png" alt="" />
+                <p class="text-sm sm:text-base text-blue-600 font-medium">
+                  Fast Diagnosis
+                </p>
+              </span>
+              <p class="text-sm sm:text-base text-[#393E46]">
+                Get instant, easy-to-understand feedback on your symptoms within
+                seconds, helping you know what might be wrong and what steps to
+                take next.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white p-4 shadow-md rounded-md flex-1">
+            <div class="flex flex-col gap-2">
+              <span class="flex items-center gap-2">
+                <img class="w-4" src="/diamond.png" alt="" />
+                <p class="text-sm sm:text-base text-blue-600 font-medium">
+                  Trusted Guidance
+                </p>
+              </span>
+              <p class="text-sm sm:text-base text-[#393E46]">
+                Receive reliable health suggestions backed by trusted medical
+                data and guidelines, helping you make informed choices with
+                confidence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white p-4 shadow-md rounded-md flex-1">
+            <div class="flex flex-col gap-2">
+              <span class="flex items-center gap-2">
+                <img class="w-4" src="/diamond.png" alt="" />
+                <p class="text-sm sm:text-base text-blue-600 font-medium">
+                  Available 24/7
+                </p>
+              </span>
+              <p class="text-sm sm:text-base text-[#393E46]">
+                Access healthcare advice anytime and anywhere, giving you peace
+                of mind and support whether you’re at home, at work, or on the
+                go.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="mt-16 w-full text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+          Contact Us
+        </h2>
+        <p class="text-gray-600 mb-8">
+          Have questions or feedback? We’d love to hear from you.
+        </p>
+        <form class="max-w-lg mx-auto flex flex-col gap-4">
+          <input
+            type="text"
+            placeholder="Your Name"
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <textarea
+            placeholder="Your Message"
+            rows="5"
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          ></textarea>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition"
+          >
+            Send Message
+          </button>
+        </form>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="mt-16 w-full text-center text-blue-600 text-sm sm:text-base"
+      >
+        <p>&copy; 2025 Raza nAI. All Rights Reserved.</p>
+      </footer>
+    </main>
+    <!-- Absolute log In and Sign Up -->
+    <div
+      class="signup absolute collapse w-full h-full bg-[#00000070] absolute top-0 left-0 z-[11] flex items-center flex-col justify-center"
+    >
+      <div
+        class="w-[43%] flex items-center rounded-md bg-[url('/textured-bg.jpg')] bg-contain"
+      >
+        <div class="py-2 px-2 flex-1"></div>
+        <div
+          class="relative flex-1 bg-white px-4 py-5 flex flex-col items-center gap-2 rounded-tr-md rounded-br-md"
+        >
+          <img
+            class="close-btn absolute right-2 top-2 cursor-pointer"
+            src="/close.svg"
+            alt="close button"
+          />
+          <img class="w-[200px]" src="/logo-design.png" alt="logo" />
+          <h3 class="text-center">Sign In to Continue</h3>
+          <label class="w-full">
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="email-input w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </label>
+          <label class="w-full">
+            <input
+              type="password"
+              placeholder="Your Password"
+              class="password-input w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </label>
+          <button
+            type="submit"
+            class="signup-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition"
+          >
+            Log In
+          </button>
+          <p class="font-bold text-xl text-center">OR</p>
+          <button
+            type="submit"
+            class="w-[100%] bg-white hover:bg-blue-700 text-[#393E46] hover:text-white font-medium py-3 rounded-xl transition flex items-center gap-2 justify-center"
+          >
+            <img class="w-[16px]" src="/google-icon.png" alt="Google Icon" />
+            Continue With Google
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./src/main.js" type="module"></script>
   </body>
 </html>
