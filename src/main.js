@@ -118,7 +118,7 @@ function handleSignIn() {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.href = "/src/pages/chatbot.html";
+      window.location.href = "/chatbot.html";
       // ...
     })
     .catch((error) => {
