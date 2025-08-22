@@ -3,7 +3,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -33,7 +34,6 @@ const SIGNUP = document.querySelector(".signup");
 const SIGNUPBTN = document.querySelector(".signup-btn");
 const GETSTARTED = document.querySelector(".getstarted-btn");
 const CLOSESIGNUPBTN = document.querySelector(".signup-close-btn");
-const SIGNINWITHGOOGLE = document.querySelector(".continue-with-google-btn");
 
 // Login
 const LOGIN = document.querySelector(".login");
@@ -47,8 +47,6 @@ const nameContainer = document.querySelector(".name-text");
 // =============================
 // Helper Functions
 // =============================
-
-// Animate name
 function animateName() {
   if (!nameContainer) return;
   const nameArray = ["D", "r", ".", " ", "R", "a", "z", "a", "n"];
@@ -62,7 +60,6 @@ function animateName() {
   }, 200);
 }
 
-// Show / Hide Popup
 function showPopup(element) {
   if (!element) return;
   element.classList.remove("collapse");
@@ -75,22 +72,12 @@ function hidePopup(element) {
   body.style.overflow = "scroll";
 }
 
-// Sign up new user
 function handleSignUp() {
   const emailInput = document.querySelector(".email-input");
   const passwordInput = document.querySelector(".password-input");
-
   if (!emailInput || !passwordInput) return;
 
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
-
-  if (!email || !password) {
-    console.log("Please enter both email and password");
-    return;
-  }
-
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
     .then((userCredential) => {
       console.log("User created:", userCredential.user);
     })
@@ -102,29 +89,15 @@ function handleSignUp() {
 function handleSignIn() {
   const emailInput = document.querySelector(".email-log-in-input");
   const passwordInput = document.querySelector(".password-log-in-input");
-
   if (!emailInput || !passwordInput) return;
 
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
-
-  if (!email || !password) {
-    console.log("Please enter both email and password");
-    return;
-  }
-
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
     .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
+      console.log("Signed in with email:", userCredential.user);
       window.location.href = "/chatbot.html";
-      // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
+      console.error("Email sign-in error:", error.message);
     });
 }
 
@@ -132,51 +105,14 @@ function handleSignIn() {
 // Event Listeners
 // =============================
 window.onload = () => {
-  // Animate name repeatedly
   animateName();
   setInterval(animateName, 6000);
 
-  // Signup popup
   GETSTARTED?.addEventListener("click", () => showPopup(SIGNUP));
   CLOSESIGNUPBTN?.addEventListener("click", () => hidePopup(SIGNUP));
   SIGNUPBTN?.addEventListener("click", handleSignUp);
 
-  // Login popup
   LOGINBTN?.addEventListener("click", () => showPopup(LOGIN));
   CLOSELOGINBTN?.addEventListener("click", () => hidePopup(LOGIN));
-  SIGNINWITHGOOGLE?.addEventListener("click", () => {
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-      // Mobile → use redirect
-      signInWithRedirect(auth, provider);
-    } else {
-      // Desktop → use popup
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          const user = result.user;
-          console.log("Signed in (popup):", user);
-        })
-        .catch((error) => {
-          console.error("Popup sign-in error:", error.message);
-        });
-    }
-  });
-
-  // When page loads, check redirect result
-  getRedirectResult(auth)
-    .then((result) => {
-      if (result?.user) {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        const user = result.user;
-        console.log("Signed in (redirect):", user);
-      }
-    })
-    .catch((error) => {
-      console.error("Redirect sign-in error:", error.message);
-    });
-
-  // SIGN IN WITH AN EXISTING ACCOUNT
   SIGNINBTN?.addEventListener("click", handleSignIn);
 };
