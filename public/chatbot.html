@@ -8,166 +8,96 @@
     <link rel="icon" type="image/x-icon" href="/logo-design.png">
 </head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<body class="bg-gray-50 h-screen flex">
-    <!-- Sidebar-->
-    <div class="sidebar sidebar-transition w-64 bg-white shadow-lg flex-shrink-0 hidden md:flex flex-col">
-        <div class="p-4 border-b border-gray-200 h-16.5">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <img src="/logo-design.png" class="fas fa-user-md text-white text-sm"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 
-        <!-- Mobile Sidebar -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
-    <div id="mobileSidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
-        <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <i class="fas fa-user-md text-white text-sm"></i>
-                </div>
-                <h2 class="text-lg font-semibold text-gray-900">Dr. Razan</h2>
-            </div>
-            <button id="closeSidebar" class="p-1 hover:bg-gray-100 rounded">
-                <i class="fas fa-times text-gray-600"></i>
-            </button>
-        </div>
-        
-        <div class="flex-1 overflow-y-auto">
-            <div class="p-3">
-                <button class="w-full text-left p-3 rounded-lg hover:bg-gray-100 border border-gray-200 mb-2">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-700">New Consultation</span>
-                        <i class="fas fa-plus text-gray-400 text-xs"></i>
-                    </div>
-                </button>
-            </div>
-            
-            <div class="px-3">
-                <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Recent Chats</h3>
-                <div class="space-y-1">
-                    <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 bg-blue-50 border-l-3 border-blue-500">
-                        <div class="text-sm text-gray-900 truncate">Flu symptoms - 3 days</div>
-                        <div class="text-xs text-gray-500">Today</div>
-                    </button>
-                    <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100">
-                        <div class="text-sm text-gray-700 truncate">General checkup advice</div>
-                        <div class="text-xs text-gray-500">Yesterday</div>
-                    </button>
-                    <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100">
-                        <div class="text-sm text-gray-700 truncate">Headache consultation</div>
-                        <div class="text-xs text-gray-500">2 days ago</div>
-                    </button>
-                </div>
-            </div>
-        </div>
+<body class="flex bg-gray-100">
+<!--div class : sidebar-->
+<div class="w-22 bg-white shadow border-r border-gray-300">
+    <!--div class: logo-->
+    <div class="flex items-center">
+        <img src="/logo-design.png" alt="logo" class="w-20">
     </div>
+    <!--avatar icon-->
+    <button class="w-10 h-10 flex items-center justify-center mt-120 ml-5 cursor-pointer">
+        <img src="/Avatar.png" alt="account icon">
+    </button>
+</div>
 
-    <!-- Main Chat Area -->
+ <!-- div class: content -->
     <div class="flex-1 flex flex-col">
-        <!-- Header -->
-        <header class="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-200">
-            <div class="flex items-center space-x-3">
-                <button id="menuBtn" class="md:hidden p-2 hover:bg-gray-100 rounded-full">
-                    <i class="fas fa-bars text-gray-600"></i>
-                </button>
-                <h1 class="text-xl font-semibold text-gray-900">Dr. Razan</h1>
-            </div>
-            <div class="flex items-center space-x-2">
-                <button class="p-2 hover:bg-gray-100 rounded-full border border-gray-300">
-                    <i class="fas fa-cog text-gray-600"></i>
-                </button>
-            </div>
+        <!--header-->
+        <header class="bg-white px-4 py-4 flex justify-between items-center border-b border-gray-300 h-20">
+            <h1 class="font-bold text-xl">Dr.Razan</h1>
+            <!--settings btn-->
+            <button class="flex p-2 hover:bg-gray-300 rounded-full border border-gray-400">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1c0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
+                    </svg>
+                </div>
+            </button>
         </header>
 
-         <div class="flex-1 overflow-y-auto p-4 space-y-4">
-            <!-- Message -->
-            <div class="flex items-start space-x-3">
-                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-blue-800 text-sm font-bold">SL</span>
-                </div>
-                <div class="message-bubble bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
-                    <p class="text-gray-800 text-sm mb-2">Hello! I'm your personal AI Doctor Razan.</p>
-                    <div class="text-xs text-gray-500 flex items-end">
-                        <span class="">10:25</span>
-                        <i class="fas fa-check-double text-blue-500 ml-2"></i>
-                    </div>
-                </div>
+        <!-- Chat area -->
+        <div class="flex-1 flex flex-col bg-gray-200 p-4">
+            <!--div class: user-icon-->
+            <div class="flex mt-4 ml-10"><img src="/user-icon.png" alt="user-icon" class="mr-1.5">
+            <!--div class: chat container-->
+            <div class="bg-white w-fit p-1 rounded-xl flex border">
+            <p class="">Hi i am dr.razan.</p>
+            <span class="text-xs ml-1 mt-1.5">10:00</span>
+            <span class="text-xs ml-1 mt-2.5"><img src="/Checks.png"></span>
             </div>
-
-            <!--voice message-->
-             <div class="flex justify-end">
-                <div class="message-bubble voice-note rounded-2xl p-4 shadow-sm">
-                    <div class="flex items-center space-x-3">
-                        <button class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                            <i class="fas fa-play text-blue-500 text-sm"></i>
-                        </button>
-                        <div class="voice-waveform flex-1">
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                        </div>
-                        <span class="text-white text-sm">02:12</span>
-                    </div>
-                    <div class="text-xs text-white text-opacity-70 mt-2 flex items-center justify-end">
-                        <span>11:25</span>
-                        <i class="fas fa-check-double text-white text-opacity-70 ml-2"></i>
-                    </div>
-                </div>
             </div>
-             <div class="flex items-start space-x-3">
-                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-blue-800 text-sm font-bold">SL</span>
-                </div>
-                <div class="message-bubble bg-white rounded-2xl p-4 shadow-sm border border-gray-200">
-                    <p class="text-gray-800 text-sm mb-3">"I'm sorry you're feeling unwell. To better understand your symptoms, could you tell me:</p>
-                    <ul class="text-gray-800 text-sm space-y-1 mb-3 ml-4">
-                        <li class="flex items-start"><span class="w-1 h-1 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>How high your fever is and how long you've had it?</li>
-                        <li class="flex items-start"><span class="w-1 h-1 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>Do you also have a cough, sore throat, or body aches?</li>
-                        <li class="flex items-start"><span class="w-1 h-1 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>Are you experiencing any shortness of breath, chest pain, or confusion?</li>
-                    </ul>
-                    <p class="text-gray-800 text-sm mb-3">This will help me assess whether it's likely a common cold, flu, or something that requires urgent care."</p>
-                    <div class="text-xs text-gray-500 flex items-center">
-                        <span>02:25</span>
-                        <i class="fas fa-check-double text-blue-500 ml-2"></i>
-                    </div>
-                </div>
+        
+        
+        <!--reply-->
+        <div class="flex items-start mb-4 justify-end p4">
+            <!--div class: user-icon-->
+            <div class="flex p-2.5">
+            <!--div class: chat container-->
+            <div class="bg-blue-700 w-fit p-1 rounded-xl flex border text-white">
+            <p>I have a Headache</p>
+            <span class="text-xs ml-1 mt-1.5">10:00</span>
+            <span class="text-xs ml-1 mt-2.5"><img src="/Checks.png"></span>
             </div>
-            <!--control buttons-->
-              <div class="flex start-15 relative space-x-4 py-2">
-                <button class="p-2 hover:bg-gray-200 rounded-full">
-                    <i class="fas fa-volume-up text-gray-600"></i>
-                </button>
-                <button class="p-2 hover:bg-gray-200 rounded-full">
-                    <i class="far fa-copy text-gray-600"></i>
-                </button>
             </div>
         </div>
-              <!-- Input -->
-        <div class="bg-white border-t border-gray-200 p-4">
-            <div class="flex items-center space-x-3">
-                <div class="flex-1 relative">
-                    <input type="text" class="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"/>
-                </div>
-                <button class="p-2 hover:bg-gray-200 rounded-full">
-                    <i class="fas fa-microphone text-gray-600"></i>
-                </button>
-                <button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center space-x-2 transition-colors">
-                    <span class="text-sm font-medium">Send</span>
-                    <i class="fas fa-paper-plane text-white text-sm"></i>
-                </button>
+
+        <!--response-->
+           <div class="flex-1 flex flex-col p-4">
+            <!--div class: user-icon-->
+            <div class="flex mt-4 ml-6 w-fit"><img src="/user-icon.png" alt="user-icon" class="mr-1.5 h-10">
+            <!--div class: chat container-->
+            <div class="bg-white w-fit p-1 rounded-xl flex border max-w-md">
+                <div class="flex flex-col w-fit">
+             <p class="flex mb-2">I'm sorry you are feeling unwell.To better understand your symptoms,could you tell me:</p>
+            <ul class="list-disc ml-4 mb-2 space-y-1">
+                <li>How high your fever is and how long you've had it?</li>
+                <li>Do you also know have a cough,sore throat, or body aches?</li>
+                <li>Are you experiencing any shortness of breath,chest pain or confusion?</li>
+            </ul>
+            <p class="flex">This will help me assess whether it's likely a common cold,flu, or something that requires urgent care.</p>
+            <span class="text-xs relative top-1">10:00</span>
+            <span class="text-xs ml-1 mt-2.5"><img src="/Checks.png"></span>
             </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!--div class: input area-->
+        <div class="bg-white border-t border-white rounded-2xl">
+            <div class="flex items-center">
+                <input class="w-full bg-white rounded-2xl px-4 py-4" type="text" placeholder="How can i help?">
+            </div>
+            <!--voice butotn-->
+            <button class="p-3" title="Voice Message">
+                <img src="/microphone.png" class="ml-270 cursor-pointer">
+            </button>
+            <button title="Send" class="mr">
+                <img src="/send.png" class="cursor-pointer">
+            </button>
         </div>
     </div>
-    <script src="/src/chatbot.js" type="module"></script>
-    </body>
+    </div>
+</body>
 </html>
