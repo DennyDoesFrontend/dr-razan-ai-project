@@ -1,105 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
     <title>Razan</title>
-    <link rel="icon" type="image/x-icon" href="/logo-design.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="flex bg-gray-100 h-screen">
-<!--div class : sidebar-->
-<div class="w-20 bg-white shadow border-r border-gray-300 flex flex-col">
-    <!--div class: logo-->
-    <div class="flex items-center justify-center p-2">
-        <img src="/logo-design.png" alt="logo" class="w-16">
-    </div>
-    <!--avatar icon-->
-    <button class="w-10 h-10 flex items-center justify-center ml-5 mt-240 cursor-pointer">
-        <img src="/Avatar.png" alt="account icon" class="w-10 h-10">
-    </button>
-</div>
-
- <!-- div class: content -->
-<div class="flex-1 flex flex-col">
-    <!--header-->
-    <header class="bg-white px-4 py-4 flex justify-between items-center border-b border-gray-300 h-20">
-        <h1 class="font-bold text-xl">Dr.Razan</h1>
-        <!--settings btn-->
-        <button class="flex p-2 hover:bg-gray-300 rounded-full border border-gray-400">
-            <div class="w-6 h-6 rounded-full flex items-center justify-center">
-                <svg class="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1c0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
-                </svg>
-            </div>
-        </button>
-    </header>
-
-    <!-- Chat area -->
-    <div class="flex-1 flex flex-col bg-gray-200 p-4 overflow-y-auto">
-        <!--div class: user-icon-->
-        <div class="flex mt-4 ml-10">
-            <img src="/user-icon.png" alt="user-icon" class="mr-1.5 w-8 h-8">
-            <!--div class: chat container-->
-            <div class="bg-white w-fit p-2 rounded-xl flex border">
-                <p class="">Hi i am dr.razan.</p>
-                <span class="text-xs ml-1 mt-1.5">10:00</span>
-                <span class="text-xs ml-1 mt-2.5"><img src="/Checks.png" alt="check" class="w-4 h-4"></span>
-            </div>
+    <link rel="icon" type="image/x-icon" href="/logo-design.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+    <style>
+      * {
+        font-family: "Host Grotesk";
+      }
+    </style>
+  </head>
+  <body>
+    <main class="flex items-center w-screen h-screen bg-[#fcfcf9]">
+      <nav
+        class="h-[100%] bg-[#f3f3ee] text-[#13343b] py-4 flex flex-col items-center justify-between"
+      >
+        <div class="flex flex-col gap-5 items-center text-xs">
+          <img src="/logo-design.png" alt="logo" class="max-w-[80px]" />
+          <span class="flex flex-col items-center leading-4"
+            ><i
+              class="ri-chat-voice-ai-line font-thin text-3xl px-1 bg-[#e8e8e3] rounded-sm cursor-pointer"
+            ></i
+            >Chat</span
+          >
+          <span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
+            ><i class="ri-capsule-fill text-3xl"></i>Medication</span
+          >
+          <span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
+            ><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+          >
         </div>
-        
-        <!--reply-->
-        <div class="flex items-start mb-4 justify-end p-4">
-            <!--div class: user-icon-->
-            <div class="flex p-2.5">
-                <!--div class: chat container-->
-                <div class="bg-blue-700 w-fit p-2 rounded-xl flex border text-white">
-                    <p>I have a Headache</p>
-                    <span class="text-xs ml-1 mt-1.5">10:00</span>
-                    <span class="text-xs ml-1 mt-2.5"><img src="/Checks.png" alt="check" class="w-4 h-4"></span>
-                </div>
-            </div>
+        <span
+          class="flex flex-col items-center font-thin text-xs leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
+          ><i class="ri-account-pin-circle-line text-3xl"></i>Account</span
+        >
+      </nav>
+      <!-- main chat here -->
+      <div
+        class="flex flex-col items-center flex-1 h-[90%] justify-center gap-8"
+      >
+        <div class="flex flex-col items-center justify-center">
+          <h1 class="text-6xl text-[#13343b] text-shadow-sm">razanAI</h1>
+          <p class="text-[#4b6468] text-lg">
+            Hi there, Gabriel, How may I help you today?
+          </p>
         </div>
-
-        <!--response-->
-        <div class="flex mt-4 ml-6 w-fit">
-            <!--div class: user-icon-->
-            <img src="/user-icon.png" alt="user-icon" class="mr-1.5 h-10 w-8">
-            <!--div class: chat container-->
-            <div class="bg-white w-fit p-2 rounded-xl flex border max-w-md">
-                <div class="flex flex-col w-fit">
-                    <p class="flex mb-2">I'm sorry you are feeling unwell.To better understand your symptoms,could you tell me:</p>
-                    <ul class="list-disc ml-4 mb-2 space-y-1">
-                        <li>How high your fever is and how long you've had it?</li>
-                        <li>Do you also know have a cough,sore throat, or body aches?</li>
-                        <li>Are you experiencing any shortness of breath,chest pain or confusion?</li>
-                    </ul>
-                    <p class="flex">This will help me assess whether it's likely a common cold,flu, or something that requires urgent care.</p>
-                    <div class="flex items-center mt-2">
-                        <span class="text-xs">10:00</span>
-                        <span class="text-xs ml-1"><img src="/Checks.png" alt="check" class="w-4 h-4"></span>
-                    </div>
-                </div>
-            </div>
+        <!-- message input box -->
+        <div
+          class="border-1 border-[#4b6468] p-2 rounded-lg flex flex-col gap-4"
+        >
+          <div>
+            <input
+              class="min-w-[600px] outline-none"
+              type="text"
+              placeholder="Say anything to Razan"
+            />
+            <i class="ri-mic-2-line text-xl text-[#13343b]"></i>
+            <i class="ri-send-plane-line text-xl text-[#13343b]"></i>
+          </div>
+          <div class="flex items-center gap-4">
+            <p class="p-2 bg-[#e8e8e3] rounded-sm text-sm text-[#13343b]">
+              Track My Medication
+            </p>
+            <p class="p-2 bg-[#e8e8e8] rounded-sm text-sm text-[#13343b]">
+              Note down Symptoms
+            </p>
+          </div>
         </div>
-    </div>
-    
-    <!--div class: input area-->
-    <div class="bg-white border-t border-gray-300 p-4">
-        <div class="flex items-center gap-2">
-            <input class="flex-1 bg-gray-100 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="How can i help?" id="messageInput">
-            <!--voice button-->
-            <button class="p-2 hover:bg-gray-100 rounded-full" title="Voice Message">
-                <img src="/microphone.png" alt="voice message" class="w-10 h-10 cursor-pointer">
-            </button>
-            <button class="p-2 hover:bg-gray-100 rounded-full" title="Send">
-                <img src="/send.png" alt="send message" class="w-20 h-10 cursor-pointer">
-            </button>
-        </div>
-    </div>
-</div>
-</body>
+      </div>
+    </main>
+  </body>
 </html>
