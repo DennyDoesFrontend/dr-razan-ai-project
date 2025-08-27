@@ -3,3 +3,13 @@
 * {
     font-family: Poppins, sans-serif;
 }
+.filter-btn{
+    transition: all 0.7s ease;
+    position: relative;
+}
+.filter-btn:hover{
+    transform: translateY(-6px);
+}
+.symptom-card{
+    transition: all 0.5s ease;
+}

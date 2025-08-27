@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razan</title>
+    <link rel="icon" type="image/x-icon" href="/logo-design.png">
+      <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+     <style>
+        *{
+            font-family: "Host Grotesk";
+        }
+    </style>
+</head>
+    <body>
+    <main class="flex items-center w-screen h-screen bg-[#fcfcf9]">
+      <nav
+        class="h-[100%] bg-[#f3f3ee] text-[#13343b] py-4 flex flex-col items-center justify-between"
+      >
+        <div class="flex flex-col gap-5 items-center text-xs">
+          <img src="/logo-design.png" alt="logo" class="max-w-[80px]" />
+          <span class="flex flex-col items-center leading-4"
+            ><i
+              class="ri-chat-voice-ai-line font-thin text-3xl text-[#4b6468] hover:text-[#13343b] px-1 rounded-sm cursor-pointer"
+            ></i
+            >Chat</span
+          >
+          <span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b]text-[#4b6468] hover:text-[#13343b] cursor-pointer"
+            ><i class="ri-capsule-fill text-3xl"></i>Medication</span
+          >
+          <span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] bg-[#e8e8e3] px-1 rounded-xl hover:text-[#13343b] cursor-pointer" 
+            onclick="navigateTo('notebook.html')"><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+          >
+        </div>
+        <span
+          class="flex flex-col items-center font-thin text-xs leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
+          ><i class="ri-account-pin-circle-line text-3xl"></i>Account</span
+        >
+      </nav>
+
+    <!--notebook section-->
+    <div class="flex-1 h-full p-8 overflow-y-auto">
+        <div class="w-full max-w-6xl mx-auto fade-in">
+          <div class="mb-8">
+            <h1 class="text-4xl font-light text-[#13343b] mb-2">Symptom Notebook</h1>
+            <p class="text-[#4b6468] text-lg">Track and monitor your symptoms over time</p>
+          </div>
+
+    <!--filters-->
+    <div class="flex gap-4 mb-0.5">
+      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">Today</button>
+      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">Yesterday</button>
+      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">This Week</button>
+      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">This Month</button>
+      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">All Time</button>
+    </div>
+
+    <!--symptoms grid layout-->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!--the symptom cards-->
+      <!--symptom for today-->
+      <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
+          <!--time of report-->
+          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+        </div>
+        <!--description-->
+        <p class="text-[#4b6468] mb-3">I feel a bit of pain on the left side of my head</p>
+        <!--buttons-->
+        <div class="flex items-center justify-between">
+          <div class="flex gap-2 items-end">
+            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
+            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          </div>
+        </div>
+      </div>
+
+       <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
+          <!--time of report-->
+          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+        </div>
+        <!--description-->
+        <p class="text-[#4b6468] mb-3">I feel a bit of pain on the left side of my head</p>
+        <!--buttons-->
+        <div class="flex items-center justify-between">
+          <div class="flex gap-2 items-end">
+            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
+            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+</body>
+</html>

@@ -41,8 +41,8 @@
             ><i class="ri-capsule-fill text-3xl"></i>Medication</span
           >
           <span
-            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
-            ><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer" 
+            onclick="navigateTo('notebook.html')"><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
           >
         </div>
         <span
@@ -84,5 +84,10 @@
         </div>
       </div>
     </main>
+    <script>
+    function navigateTo(page){
+    window.location.href = page;
+}
+    </script>
   </body>
 </html>
