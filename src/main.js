@@ -116,3 +116,62 @@ window.onload = () => {
   CLOSELOGINBTN?.addEventListener("click", () => hidePopup(LOGIN));
   SIGNINBTN?.addEventListener("click", handleSignIn);
 };
+
+let currentFilter = 'today';
+
+//filter option objects
+const filterTime = {
+  'today' : 'Today',
+  'yesterday' : 'Yesterday',
+  'this-week' : 'This Week',
+  'this-month' : 'This Month',
+  'all-time' : 'All Time'
+};
+
+//fuction to filter symptoms
+function filterSymptoms(){
+  const cards = document.querySelectorAll('.symptom-card');
+
+  cards.forEach(card => {
+    const cardTime = card.getAttribute('data-time');
+
+    if(currentFilter === 'all-time' || cardTime === currentFilter){
+      card.classList.remove('hidden')
+    } else{
+      card.classList.add('hidden')
+    }
+  });
+}
+
+//getting symptoms from a specific filter
+
+function getSymptomsByFilter(filter){
+  const cards = document.querySelectorAll('.symptom-card');
+  const symptoms = [];
+
+  cards.forEach(card =>{
+    const cardTime = card.getAttribute('data-time');
+
+    if(filter === 'all-time' || cardTime === filter){
+      symptoms.push({
+        name: card.querySelector('h3').textContent,
+        time: card.querySelector('.text-xs').textContent
+      });
+    }
+  });
+  return symptoms;
+}
+
+// slecting a filter
+function selectFilter(filter){
+  currentFilter = filter;
+  console.log("filter button selected");
+  filterSymptoms();
+}
+
+const selectedCard = document.querySelector('.filter-btn');
+selectedCard.addEventListener('change',function(c){
+  selectFilter(c.target.value);
+});
+filterSymptoms();
+getSymptomsByFilter();

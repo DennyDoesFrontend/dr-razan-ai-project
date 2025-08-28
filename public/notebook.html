@@ -60,18 +60,20 @@
 
     <!--filters-->
     <div class="flex gap-4 mb-0.5">
-      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">Today</button>
-      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">Yesterday</button>
-      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">This Week</button>
-      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">This Month</button>
-      <button class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">All Time</button>
+      <select class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">
+      <option value="today">Today</option>
+      <option value="yesterday">Yesterday</option>
+      <option value="this-week">This Week</option>
+      <option value="this-month">This Month</option>
+      <option value="all-time">All Time</option>
+      </select>
     </div>
 
     <!--symptoms grid layout-->
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       <!--the symptom cards-->
       <!--symptom for today-->
-      <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+      <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit" data-time="today">
         <div class="flex justify-between items-start mb-4">
           <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
           <!--time of report-->
@@ -88,9 +90,9 @@
         </div>
       </div>
 
-       <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+       <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit" data-time="yesterday">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
+          <h3 class="text-lg font-semibold text-[#4b6468]">Kwashiokor</h3>
           <!--time of report-->
           <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
         </div>
@@ -105,6 +107,7 @@
         </div>
       </div>
     </div>
-    </div> 
+    </div>
+    <script src="/src/main.js"></script> 
 </body>
 </html>
