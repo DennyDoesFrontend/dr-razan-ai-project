@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/style.css" />
     <title>Razan</title>
     <link rel="icon" type="image/x-icon" href="/logo-design.png" />
     <link
@@ -16,78 +15,122 @@
       href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <style>
       * {
-        font-family: "Host Grotesk";
+        font-family: "Host Grotesk", sans-serif;
       }
     </style>
   </head>
-  <body>
-    <main class="flex items-center w-screen h-screen bg-[#fcfcf9]">
+  <body class="bg-[#fcfcf9] overflow-x-hidden">
+    <i
+      class="ri-menu-fold-2-line text-xl text-[#13343b] px-4 py-4 nav-toggle absolute"
+    ></i>
+    <!-- Main Content -->
+    <main
+      class="main-content md:ml-[120px] flex flex-col items-center justify-center min-h-screen px-4 py-8"
+    >
+      <!-- Desktop Navigation -->
       <nav
-        class="h-[100%] bg-[#f3f3ee] text-[#13343b] py-4 flex flex-col items-center justify-between"
+        class="navbar md:flex h-screen bg-[#f3f3ee] text-[#13343b] py-4 flex-col items-center justify-between fixed left-[-100%] top-0 z-40"
       >
         <div class="flex flex-col gap-5 items-center text-xs">
-          <img src="/logo-design.png" alt="logo" class="max-w-[80px]" />
-          <span class="flex flex-col items-center leading-4"
-            ><i
-              class="ri-chat-voice-ai-line font-thin text-3xl px-1 bg-[#e8e8e3] rounded-sm cursor-pointer"
-            ></i
-            >Chat</span
-          >
+          <img src="/logo-design.png" alt="logo" class="max-w-[60px] w-full" />
+          <span class="flex flex-col items-center leading-4">
+            <i
+              class="ri-chat-voice-ai-line font-thin text-2xl px-2 py-1 bg-[#e8e8e3] rounded-sm cursor-pointer"
+            ></i>
+            <span class="mt-1">Chat</span>
+          </span>
           <span
-            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
-            ><i class="ri-capsule-fill text-3xl"></i>Medication</span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer transition-colors"
           >
+            <i class="ri-capsule-fill text-2xl"></i>
+            <span class="mt-1">Medication</span>
+          </span>
           <span
-            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer" 
-            onclick="navigateTo('notebook.html')"><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer transition-colors"
+            onclick="navigateTo('notebook.html')"
           >
+            <i class="ri-file-list-3-line text-2xl"></i>
+            <span class="mt-1">Notebook</span>
+          </span>
         </div>
         <span
-          class="flex flex-col items-center font-thin text-xs leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
-          ><i class="ri-account-pin-circle-line text-3xl"></i>Account</span
+          class="flex flex-col items-center font-thin text-xs leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer transition-colors"
         >
+          <i class="ri-account-pin-circle-line text-2xl"></i>
+          <span class="mt-1">Account</span>
+        </span>
       </nav>
-      <!-- main chat here -->
       <div
-        class="flex flex-col items-center flex-1 h-[90%] justify-center gap-8"
+        class="flex flex-col items-center justify-center w-full max-w-2xl gap-6 md:gap-8"
       >
-        <div class="flex flex-col items-center justify-center">
-          <h1 class="text-6xl text-[#13343b] text-shadow-sm">razanAI</h1>
-          <p class="text-[#4b6468] text-lg">
+        <!-- Logo and Greeting -->
+        <div class="flex flex-col items-center justify-center text-center px-4">
+          <!-- Mobile logo (only show on mobile since desktop has it in nav) -->
+          <img
+            src="/logo-design.png"
+            alt="logo"
+            class="w-16 h-16 mb-4 md:hidden"
+          />
+          <h1 class="text-4xl md:text-6xl text-[#13343b] font-medium mb-2">
+            razanAI
+          </h1>
+          <p class="text-[#4b6468] text-base md:text-lg">
             Hi there, Gabriel, How may I help you today?
           </p>
         </div>
-        <!-- message input box -->
-        <div
-          class="border-1 border-[#4b6468] p-2 rounded-lg flex flex-col gap-4"
-        >
-          <div>
-            <input
-              class="min-w-[600px] outline-none"
-              type="text"
-              placeholder="Say anything to Razan"
-            />
-            <i class="ri-mic-2-line text-xl text-[#13343b]"></i>
-            <i class="ri-send-plane-line text-xl text-[#13343b]"></i>
+
+        <!-- Chat Input Box -->
+        <div class="w-full max-w-full px-4">
+          <div
+            class="border border-[#4b6468] p-3 md:p-4 rounded-lg flex flex-col gap-3 md:gap-4 bg-white/50"
+          >
+            <!-- Input Row -->
+            <div class="flex items-center gap-3 w-full">
+              <input
+                class="flex-1 outline-none bg-transparent text-sm md:text-base placeholder-[#4b6468]"
+                type="text"
+                placeholder="Say anything to Razan"
+              />
+              <div class="flex items-center gap-2 flex-shrink-0">
+                <i
+                  class="ri-mic-2-line text-lg md:text-xl text-[#13343b] cursor-pointer hover:text-[#4b6468] transition-colors"
+                ></i>
+                <i
+                  class="ri-send-plane-line text-lg md:text-xl text-[#13343b] cursor-pointer hover:text-[#4b6468] transition-colors"
+                ></i>
+              </div>
+            </div>
+
+            <!-- Suggestion Pills -->
+            <div class="flex gap-2 md:gap-3">
+              <div
+                class="w-[49%] px-3 py-2 bg-[#e8e8e3] hover:bg-[#ddddd8] rounded-sm text-xs md:text-sm text-[#13343b] transition-colors whitespace-nowrap"
+              >
+                Track My Medications
+              </div>
+              <div
+                class="w-[49%] px-3 py-2 bg-[#e8e8e3] hover:bg-[#ddddd8] rounded-sm text-xs md:text-sm text-[#13343b] transition-colors whitespace-nowrap"
+              >
+                Note down Symptoms
+              </div>
+            </div>
           </div>
-          <div class="flex items-center gap-4">
-            <p class="p-2 bg-[#e8e8e3] rounded-sm text-sm text-[#13343b]">
-              Track My Medications
-            </p>
-            <p class="p-2 bg-[#e8e8e8] rounded-sm text-sm text-[#13343b]">
-              Note down Symptoms
-            </p>
+        </div>
+
+        <!-- Additional mobile-friendly content space -->
+        <div class="w-full max-w-full px-4 md:hidden">
+          <div class="text-center text-xs text-[#4b6468] space-y-1">
+            <p>Tap the microphone to speak</p>
+            <p>or type your message above</p>
           </div>
         </div>
       </div>
     </main>
-    <script>
-    function navigateTo(page){
-    window.location.href = page;
-}
-    </script>
+
+    <script src="./src/chatbot.js" type="module"></script>
   </body>
 </html>

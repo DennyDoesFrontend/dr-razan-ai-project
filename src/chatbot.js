@@ -23,3 +23,38 @@ getRedirectResult(auth)
     }
   })
   .catch(console.error);
+
+// navigation toggle
+const NAVTOGGLE = document.querySelector(".nav-toggle");
+const NAVBAR = document.querySelector(".navbar");
+NAVTOGGLE.addEventListener("click", () => {
+  if (NAVBAR.classList.contains("left-[-100%]")) {
+    NAVBAR.classList.remove("left-[-100%]");
+    NAVBAR.classList.add("left-0");
+
+    // Animate in
+    gsap.fromTo(
+      NAVBAR,
+      { x: "-100%", opacity: 0 },
+      { x: "0%", opacity: 1, duration: 0.5, ease: "power3.out" }
+    );
+
+    NAVTOGGLE.classList.toggle("right-0");
+  } else {
+    NAVBAR.classList.remove("left-0");
+    NAVBAR.classList.add("left-[-100%]");
+
+    // Animate out
+    gsap.to(NAVBAR, {
+      x: "-100%",
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.in",
+    });
+
+    NAVTOGGLE.classList.toggle("right-0");
+  }
+});
+
+// NAVBAR.classList.toggle("left-[-100%]");
+// NAVTOGGLE.classList.toggle("right-0");
