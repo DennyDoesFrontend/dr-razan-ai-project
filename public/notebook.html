@@ -32,8 +32,8 @@
           <span class="flex flex-col items-center leading-4"
             ><i
               class="ri-chat-voice-ai-line font-thin text-3xl text-[#4b6468] hover:text-[#13343b] px-1 rounded-sm cursor-pointer"
-            ></i
-            >Chat</span
+             onclick="navigateTo('chatbot.html')"></i
+           >Chat</span
           >
           <span
             class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b]text-[#4b6468] hover:text-[#13343b] cursor-pointer"
@@ -41,7 +41,7 @@
           >
           <span
             class="flex flex-col items-center font-thin leading-4 text-[#4b6468] bg-[#e8e8e3] px-1 rounded-xl hover:text-[#13343b] cursor-pointer" 
-            onclick="navigateTo('notebook.html')"><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+            ><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
           >
         </div>
         <span
@@ -108,6 +108,11 @@
       </div>
     </div>
     </div>
-    <script src="/src/main.js"></script> 
+    <script src="/src/main.js"></script>
+    <script>
+      function navigateTo(page){
+        window.location.href = page;
+      }
+    </script> 
 </body>
 </html>
