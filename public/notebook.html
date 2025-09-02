@@ -58,7 +58,7 @@
             <p class="text-[#4b6468] text-lg">Track and monitor your symptoms over time</p>
           </div>
 
-    <!--filters-->
+<!--  filters
     <div class="flex gap-4 mb-0.5">
       <select class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">
       <option value="today">Today</option>
@@ -67,20 +67,20 @@
       <option value="this-month">This Month</option>
       <option value="all-time">All Time</option>
       </select>
-    </div>
+    </div> -->
 
     <!--symptoms grid layout-->
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="flex  justify-between gap-4 ">
       <!--the symptom cards-->
       <!--symptom for today-->
-      <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit" data-time="today">
+      <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
         <div class="flex justify-between items-start mb-4">
           <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
           <!--time of report-->
           <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
         </div>
         <!--description-->
-        <p class="text-[#4b6468] mb-3">I feel a bit of pain on the left side of my head</p>
+        <p class="text-[#4b6468] mb-3 w-fit">I feel a bit of pain on the left side of my head.</p>
         <!--buttons-->
         <div class="flex items-center justify-between">
           <div class="flex gap-2 items-end">
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-       <div class="bg-[#e8e8e3] rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit" data-time="yesterday">
+       <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
         <div class="flex justify-between items-start mb-4">
           <h3 class="text-lg font-semibold text-[#4b6468]">Kwashiokor</h3>
           <!--time of report-->
@@ -106,6 +106,24 @@
           </div>
         </div>
       </div>
+
+      <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit mr-1.5">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-lg font-semibold text-[#4b6468]">Gonorhoea</h3>
+          <!--time of report-->
+          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+        </div>
+        <!--description-->
+        <p class="text-[#4b6468] mb-3 w-fit">I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile</p>
+        <!--buttons-->
+        <div class="flex items-center justify-between">
+          <div class="flex gap-2 items-end">
+            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
+            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          </div>
+        </div>
+      </div>
+
     </div>
     </div>
     <script src="/src/main.js"></script>
