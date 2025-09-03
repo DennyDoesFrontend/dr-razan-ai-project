@@ -3,8 +3,6 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -117,30 +115,32 @@ window.onload = () => {
   SIGNINBTN?.addEventListener("click", handleSignIn);
 };
 
-
-function getdate(){
+function getdate() {
   const date = new Date();
   const option = {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
   };
-  return date.toLocaleDateString('en-Us', option);
+  return date.toLocaleDateString("en-Us", option);
 }
 
 //array for symptoms
-const symptoms = [{
-  title: "Headache",
-  description: "I feel a bit of pain on the left side of my head.",
-  date: getdate()  
-},
-{
-  title: "Kwashiorkor",
-  description: "I feel like I have Kwashiorkor",
-  date: getdate()
-},
-{
-  title: "Gonorhoea",
-  description: "I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile",
-  date: getdate()
-}];
+const symptoms = [
+  {
+    title: "Headache",
+    description: "I feel a bit of pain on the left side of my head.",
+    date: getdate(),
+  },
+  {
+    title: "Kwashiorkor",
+    description: "I feel like I have Kwashiorkor",
+    date: getdate(),
+  },
+  {
+    title: "Gonorhoea",
+    description:
+      "I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile",
+    date: getdate(),
+  },
+];

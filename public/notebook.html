@@ -12,55 +12,64 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/style.css" />
      <style>
         *{
-            font-family: "Host Grotesk";
+            font-family: "Poppins", sans-serif;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-    <body>
-    <main class="flex items-center w-screen h-screen bg-[#fcfcf9]">
+    <body class="bg-white">
+    <main class="flex items-center w-screen h-screen">
       <nav
-        class="h-[100%] bg-[#f3f3ee] text-[#13343b] py-4 flex flex-col items-center justify-between"
+        class="h-[100%] bg-white border-r border-slate-300 text-gray-800 py-4 flex flex-col items-center justify-between shadow-sm min-w-[120px]"
       >
         <div class="flex flex-col gap-5 items-center text-xs">
-          <img src="/logo-design.png" alt="logo" class="max-w-[80px]" />
+          <img src="/logo-design.png" alt="logo" class="max-w-[60px]" />
           <span class="flex flex-col items-center leading-4"
             ><i
-              class="ri-chat-voice-ai-line font-thin text-3xl text-[#4b6468] hover:text-[#13343b] px-1 rounded-sm cursor-pointer"
+              class="ri-chat-voice-ai-line font-thin text-2xl text-slate-500 hover:text-gray-800 px-1 rounded-sm cursor-pointer transition-colors"
              onclick="navigateTo('chatbot.html')"></i
-           >Chat</span
+           ><span class="mt-1 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors">Chat</span></span
+          >
+          <span onclick="navigateTo('health_news.html')"
+            class="flex flex-col items-center font-thin leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
+            ><i class="ri-news-line text-2xl"></i><span class="mt-1">Discover</span></span
           >
           <span
-            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] hover:text-[#13343b]text-[#4b6468] hover:text-[#13343b] cursor-pointer"
-            ><i class="ri-capsule-fill text-3xl"></i>Medication</span
-          >
-          <span
-            class="flex flex-col items-center font-thin leading-4 text-[#4b6468] bg-[#e8e8e3] px-1 rounded-xl hover:text-[#13343b] cursor-pointer" 
-            ><i class="ri-file-list-3-line text-3xl"></i>Notebook</span
+            class="flex flex-col items-center font-thin leading-4 bg-blue-600 text-white px-2 py-1 rounded-lg cursor-pointer" 
+            ><i class="ri-file-list-3-line text-2xl"></i><span class="mt-1 font-medium">Notebook</span></span
           >
         </div>
         <span
-          class="flex flex-col items-center font-thin text-xs leading-4 text-[#4b6468] hover:text-[#13343b] cursor-pointer"
-          ><i class="ri-account-pin-circle-line text-3xl"></i>Account</span
+          class="flex flex-col items-center font-thin text-xs leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
+          ><i class="ri-account-pin-circle-line text-2xl"></i><span class="mt-1">Account</span></span
         >
       </nav>
 
     <!--notebook section-->
-    <div class="flex-1 h-full p-8 overflow-y-auto">
+    <div class="flex-1 h-full p-8 overflow-y-auto bg-white">
         <div class="w-full max-w-6xl mx-auto fade-in">
           <div class="mb-8">
-            <h1 class="text-4xl font-light text-[#13343b] mb-2">Symptom Notebook</h1>
-            <p class="text-[#4b6468] text-lg">Track and monitor your symptoms over time</p>
+            <h1 class="text-4xl font-semibold text-[#222831] mb-2">Symptom Notebook</h1>
+            <p class="text-[#393E46] text-lg">Track and monitor your symptoms over time</p>
           </div>
 
 <!--  filters
     <div class="flex gap-4 mb-0.5">
-      <select class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-[#e8e8e3] cursor-pointer">
+      <select class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-slate-100 border border-slate-300 cursor-pointer text-gray-800">
       <option value="today">Today</option>
       <option value="yesterday">Yesterday</option>
       <option value="this-week">This Week</option>
@@ -70,59 +79,69 @@
     </div> -->
 
     <!--symptoms grid layout-->
-    <div class="flex  justify-between gap-4 ">
+    <div class="flex justify-between gap-4 flex-wrap">
       <!--the symptom cards-->
       <!--symptom for today-->
-      <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+      <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-[#4b6468]">Headache</h3>
+          <h3 class="text-lg font-semibold text-gray-800">Headache</h3>
           <!--time of report-->
-          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
         </div>
         <!--description-->
-        <p class="text-[#4b6468] mb-3 w-fit">I feel a bit of pain on the left side of my head.</p>
+        <p class="text-[#393E46] mb-4">I feel a bit of pain on the left side of my head.</p>
         <!--buttons-->
         <div class="flex items-center justify-between">
-          <div class="flex gap-2 items-end">
-            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
-            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          <div class="flex gap-3 items-center">
+            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
+            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
           </div>
         </div>
       </div>
 
-       <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit">
+       <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-[#4b6468]">Kwashiokor</h3>
+          <h3 class="text-lg font-semibold text-gray-800">Kwashiokor</h3>
           <!--time of report-->
-          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
         </div>
         <!--description-->
-        <p class="text-[#4b6468] mb-3">I woke up with kwashiokor today</p>
+        <p class="text-[#393E46] mb-4">I woke up with kwashiokor today</p>
         <!--buttons-->
         <div class="flex items-center justify-between">
-          <div class="flex gap-2 items-end">
-            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
-            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          <div class="flex gap-3 items-center">
+            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
+            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
           </div>
         </div>
       </div>
 
-      <div class="bg-[#e8e8e3] flex-1 rounded-lg hover:shadow-lg p-3 mt-3 symptom-card max-w-fit mr-1.5">
+      <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-[#4b6468]">Gonorhoea</h3>
+          <h3 class="text-lg font-semibold text-gray-800">Gonorhoea</h3>
           <!--time of report-->
-          <span class="text-xs text-[#4b6468] px-3 py-1 rounded full">11:29am</span>
+          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
         </div>
         <!--description-->
-        <p class="text-[#4b6468] mb-3 w-fit">I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile</p>
+        <p class="text-[#393E46] mb-4">I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile</p>
         <!--buttons-->
         <div class="flex items-center justify-between">
-          <div class="flex gap-2 items-end">
-            <i class="ri-edit-line text-[#4b6468] cursor-pointer hover:text-[#13343b] transition-colors"></i>
-            <i class="ri-delete-bin-line text-[#4b6468] cursor-pointer hover:text-red-500 transition-colors"></i>
+          <div class="flex gap-3 items-center">
+            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
+            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
           </div>
         </div>
       </div>
+
+    </div>
+
+    <!-- Add New Symptom Button -->
+    <div class="mt-8 flex justify-center">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+        <i class="ri-add-line text-lg"></i>
+        Add New Symptom
+      </button>
+    </div>
 
     </div>
     </div>

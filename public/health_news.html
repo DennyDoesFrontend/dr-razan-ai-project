@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health News</title>
+    <link rel="icon" type="image/x-icon" href="/logo-design.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .navbar {
+        transition: left 0.3s ease-in-out;
+      }
+
+      .navbar.open {
+        left: 0 !important;
+      }
+
+      .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 35;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      }
+
+      .nav-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .news-card {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 16px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .news-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      .news-card img {
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .loading-spinner {
+        border: 4px solid #cbd5e1;
+        border-top: 4px solid #3b82f6;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white overflow-x-hidden">
+    <!-- Mobile nav toggle button -->
+    <button
+      class="nav-toggle fixed top-4 left-4 z-50 md:hidden"
+      aria-label="Toggle navigation"
+    >
+      <i class="ri-menu-fold-2-line text-xl text-gray-800"></i>
+    </button>
+
+    <div class="nav-overlay md:hidden"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="navbar fixed left-[-100%] md:left-0 top-0 z-40 h-screen bg-white border-r border-slate-300 text-gray-800 py-4 flex flex-col items-center justify-between w-[280px] md:w-[120px] shadow-md"
+    >
+      <button class="nav-close absolute top-4 right-4 md:hidden">
+        <i class="ri-close-line text-xl text-gray-800"></i>
+      </button>
+
+      <div class="flex flex-col gap-5 items-center text-xs mt-8 md:mt-0">
+        <img src="/logo-design.png" alt="logo" class="max-w-[60px] w-full" />
+        <span
+          class="flex flex-col items-center font-thin leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
+          onclick="navigateTo('chatbot.html')"
+        >
+          <i class="ri-chat-voice-ai-line text-2xl"></i>
+          <span class="mt-1">Chat</span>
+        </span>
+        <span class="flex flex-col items-center leading-4">
+          <i
+            class="ri-news-line font-thin text-2xl px-2 py-1 bg-blue-600 text-white rounded-sm cursor-pointer"
+          ></i>
+          <span class="mt-1 text-blue-600 font-medium">Discover</span>
+        </span>
+        <span
+          class="flex flex-col items-center font-thin leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
+          onclick="navigateTo('notebook.html')"
+        >
+          <i class="ri-file-list-3-line text-2xl"></i>
+          <span class="mt-1">Notebook</span>
+        </span>
+      </div>
+      <span
+        class="flex flex-col items-center font-thin text-xs leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
+        onclick="navigateTo('account.html')"
+      >
+        <i class="ri-account-pin-circle-line text-2xl"></i>
+        <span class="mt-1">Account</span>
+      </span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content md:ml-[120px] min-h-screen px-4 py-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-8 mt-12 md:mt-0">
+          <h1 class="text-4xl font-semibold mb-2 text-gray-800">Health News</h1>
+          <p class="text-[#393E46] text-lg">
+            Stay updated with the latest health and wellness news
+          </p>
+        </div>
+
+        <div
+          id="news-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+
+        <div id="loading" class="hidden flex justify-center items-center py-12">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <div
+          id="error"
+          class="text-red-500 hidden text-center py-8 bg-red-50 border border-red-200 rounded-lg"
+        ></div>
+      </div>
+    </main>
+
+    <!-- Firebase SDK and News Fetching -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB084-ENowSoOexW2qMDdP5y2fntGqwU4o",
+        authDomain: "razanai-677f7.firebaseapp.com",
+        projectId: "razanai-677f7",
+        storageBucket: "razanai-677f7.firebasestorage.app",
+        messagingSenderId: "1013191736728",
+        appId: "1:1013191736728:web:fa8424a8026279ad663fed",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Mobile nav functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const navToggle = document.querySelector(".nav-toggle");
+        const navClose = document.querySelector(".nav-close");
+        const navbar = document.querySelector(".navbar");
+        const overlay = document.querySelector(".nav-overlay");
+
+        function openNav() {
+          navbar.classList.add("open");
+          overlay.classList.add("show");
+        }
+
+        function closeNav() {
+          navbar.classList.remove("open");
+          overlay.classList.remove("show");
+        }
+
+        navToggle?.addEventListener("click", openNav);
+        navClose?.addEventListener("click", closeNav);
+        overlay?.addEventListener("click", closeNav);
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeNav();
+          }
+        });
+      });
+
+      // Check authentication
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        } else {
+          fetchHealthNews();
+        }
+      });
+
+      // Navigation
+      window.navigateTo = function (page) {
+        window.location.href = page;
+      };
+
+      // Fetch health news from NewsData.io
+      async function fetchHealthNews() {
+        const newsContainer = document.getElementById("news-container");
+        const loading = document.getElementById("loading");
+        const error = document.getElementById("error");
+
+        loading.classList.remove("hidden");
+        error.classList.add("hidden");
+
+        try {
+          const API_KEY = "pub_841982af7d4df46fd6361798a5d50d6e1d6f1";
+          const response = await fetch(
+            `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=diseases and infections and covid&language=en`
+          );
+          const data = await response.json();
+
+          newsContainer.innerHTML = "";
+
+          if (data.results && data.results.length > 0) {
+            data.results.slice(0, 12).forEach((article) => {
+              const publishedDate = article.pubDate
+                ? new Date(article.pubDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                : "Unknown date";
+
+              const articleElement = document.createElement("div");
+              articleElement.className = "news-card";
+              articleElement.innerHTML = `
+                <div class="mb-2">
+                  <span class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">${publishedDate}</span>
+                </div>
+                <h2 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
+                  ${article.title}
+                </h2>
+                <p class="text-[#393E46] text-sm mb-4 line-clamp-3">
+                  ${article.description || "No summary available."}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-slate-500">${
+                    article.source_id || "NewsData"
+                  }</span>
+                  <a href="${article.link}" target="_blank" 
+                     class="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors inline-flex items-center gap-1">
+                    Read more 
+                    <i class="ri-external-link-line text-xs"></i>
+                  </a>
+                </div>
+              `;
+              newsContainer.appendChild(articleElement);
+            });
+          } else {
+            newsContainer.innerHTML = "<p>No health news found.</p>";
+          }
+        } catch (err) {
+          console.error(err);
+          error.classList.remove("hidden");
+          error.innerHTML = `
+            <i class="ri-error-warning-line text-xl mb-2"></i>
+            <p>Failed to load health news. Please try again later.</p>
+          `;
+        } finally {
+          loading.classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>
