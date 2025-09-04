@@ -15,6 +15,51 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Updated Firebase v9+ modular SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
+      import { 
+        getFirestore, 
+        collection, 
+        addDoc, 
+        getDocs, 
+        doc, 
+        deleteDoc, 
+        updateDoc,
+        orderBy,
+        query,
+        serverTimestamp
+      } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
+
+      // Your web app's Firebase configuration
+       const firebaseConfig = {
+        apiKey: "AIzaSyB084-ENowSoOexW2qMDdP5y2fntGqwU4o",
+        authDomain: "razanai-677f7.firebaseapp.com",
+        projectId: "razanai-677f7",
+        storageBucket: "razanai-677f7.firebasestorage.app",
+        messagingSenderId: "1013191736728",
+        appId: "1:1013191736728:web:fa8424a8026279ad663fed",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Make functions globally available
+      window.db = db;
+      window.firestoreFunctions = {
+        collection,
+        addDoc,
+        getDocs,
+        doc,
+        deleteDoc,
+        updateDoc,
+        orderBy,
+        query,
+        serverTimestamp
+      };
+    </script>
     <link rel="stylesheet" href="./src/style.css" />
      <style>
         *{
@@ -28,6 +73,33 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -79,65 +151,13 @@
     </div> -->
 
     <!--symptoms grid layout-->
-    <div class="flex justify-between gap-4 flex-wrap">
-      <!--the symptom cards-->
-      <!--symptom for today-->
-      <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
-        <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-gray-800">Headache</h3>
-          <!--time of report-->
-          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
-        </div>
-        <!--description-->
-        <p class="text-[#393E46] mb-4">I feel a bit of pain on the left side of my head.</p>
-        <!--buttons-->
-        <div class="flex items-center justify-between">
-          <div class="flex gap-3 items-center">
-            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
-            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
-          </div>
-        </div>
-      </div>
-
-       <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
-        <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-gray-800">Kwashiokor</h3>
-          <!--time of report-->
-          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
-        </div>
-        <!--description-->
-        <p class="text-[#393E46] mb-4">I woke up with kwashiokor today</p>
-        <!--buttons-->
-        <div class="flex items-center justify-between">
-          <div class="flex gap-3 items-center">
-            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
-            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow">
-        <div class="flex justify-between items-start mb-4">
-          <h3 class="text-lg font-semibold text-gray-800">Gonorhoea</h3>
-          <!--time of report-->
-          <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">11:29am</span>
-        </div>
-        <!--description-->
-        <p class="text-[#393E46] mb-4">I have been struggling with Gonorhoea for months now and i just have one thing to say i would not wish this on anyone after all life is very valuable and fragile</p>
-        <!--buttons-->
-        <div class="flex items-center justify-between">
-          <div class="flex gap-3 items-center">
-            <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg"></i>
-            <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg"></i>
-          </div>
-        </div>
-      </div>
-
+    <div class="flex justify-between gap-4 flex-wrap" id="symptoms-container">
+      <!--the symptom cards will be loaded here dynamically-->
     </div>
 
     <!-- Add New Symptom Button -->
     <div class="mt-8 flex justify-center">
-      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+      <button id="add-symptom-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
         <i class="ri-add-line text-lg"></i>
         Add New Symptom
       </button>
@@ -145,11 +165,249 @@
 
     </div>
     </div>
+
+    <!-- Add/Edit Symptom Modal -->
+    <div id="symptom-modal" class="modal">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-6">
+          <h2 id="modal-title" class="text-2xl font-semibold text-gray-800">Add New Symptom</h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+        
+        <form id="symptom-form">
+          <div class="mb-4">
+            <label for="symptom-name" class="block text-sm font-medium text-gray-700 mb-2">Symptom Name</label>
+            <input type="text" id="symptom-name" name="name" required 
+                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          
+          <div class="mb-6">
+            <label for="symptom-description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+            <textarea id="symptom-description" name="description" rows="4" required
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          </div>
+          
+          <div class="flex gap-3 justify-end">
+            <button type="button" id="cancel-btn" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" id="save-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              Save Symptom
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script src="/src/main.js"></script>
     <script>
+      let currentEditingId = null;
+      
       function navigateTo(page){
         window.location.href = page;
       }
-    </script> 
+
+      //time of adding symptom
+      function formatTime(timestamp) {
+        if (!timestamp) return '11:29am';
+        
+        const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+        return date.toLocaleTimeString('en-US', { 
+          hour: 'numeric', 
+          minute: '2-digit',
+          hour12: true 
+        });
+      }
+
+      // Load symptoms from Firestore
+      async function loadSymptoms() {
+        try {
+          const symptomsContainer = document.getElementById('symptoms-container');
+          
+          const { collection, getDocs, orderBy, query } = window.firestoreFunctions;
+          const q = query(collection(window.db, 'symptoms'), orderBy('timestamp', 'desc'));
+          const querySnapshot = await getDocs(q);
+          
+          symptomsContainer.innerHTML = '';
+          
+          querySnapshot.forEach((doc) => {
+            const symptom = doc.data();
+            const symptomCard = createSymptomCard(doc.id, symptom);
+            symptomsContainer.appendChild(symptomCard);
+          });
+        } catch (error) {
+          console.error('Error loading symptoms:', error);
+        }
+      }
+
+      // Create symptom card element
+      function createSymptomCard(id, symptom) {
+        const card = document.createElement('div');
+        card.className = 'bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow';
+        
+        card.innerHTML = `
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-lg font-semibold text-gray-800">${symptom.name}</h3>
+            <!--time of report-->
+            <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">${formatTime(symptom.timestamp)}</span>
+          </div>
+          <!--description-->
+          <p class="text-[#393E46] mb-4">${symptom.description}</p>
+          <!--buttons-->
+          <div class="flex items-center justify-between">
+            <div class="flex gap-3 items-center">
+              <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg" onclick="editSymptom('${id}')"></i>
+              <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg" onclick="deleteSymptom('${id}')"></i>
+            </div>
+          </div>
+        `;
+        
+        return card;
+      }
+
+      // Add new symptom
+      async function addSymptom(name, description) {
+        try {
+          const { collection, addDoc, serverTimestamp } = window.firestoreFunctions;
+          
+          await addDoc(collection(window.db, 'symptoms'), {
+            name: name,
+            description: description,
+            timestamp: serverTimestamp()
+          });
+          
+          loadSymptoms(); // Reload symptoms
+        } catch (error) {
+          console.error('Error adding symptom:', error);
+          alert('Error adding symptom. Please try again.');
+        }
+      }
+
+      // Edit symptom
+      async function editSymptom(id) {
+        try {
+          const { doc, getDoc } = window.firestoreFunctions;
+          const docRef = doc(window.db, 'symptoms', id);
+          const docSnap = await getDoc(docRef);
+          
+          if (docSnap.exists()) {
+            const symptom = docSnap.data();
+            currentEditingId = id;
+            document.getElementById('modal-title').textContent = 'Edit Symptom';
+            document.getElementById('symptom-name').value = symptom.name;
+            document.getElementById('symptom-description').value = symptom.description;
+            document.getElementById('save-btn').textContent = 'Update Symptom';
+            document.getElementById('symptom-modal').classList.add('show');
+          }
+        } catch (error) {
+          console.error('Error loading symptom for edit:', error);
+        }
+      }
+
+      // Update symptom
+      async function updateSymptom(id, name, description) {
+        try {
+          const { doc, updateDoc } = window.firestoreFunctions;
+          
+          await updateDoc(doc(window.db, 'symptoms', id), {
+            name: name,
+            description: description
+          });
+          
+          loadSymptoms(); // Reload symptoms
+        } catch (error) {
+          console.error('Error updating symptom:', error);
+          alert('Error updating symptom. Please try again.');
+        }
+      }
+
+      // Delete symptom
+      async function deleteSymptom(id) {
+        if (!confirm('Are you sure you want to delete this symptom?')) {
+          return;
+        }
+        
+        try {
+          const { doc, deleteDoc } = window.firestoreFunctions;
+          
+          await deleteDoc(doc(window.db, 'symptoms', id));
+          
+          loadSymptoms(); // Reload symptoms
+        } catch (error) {
+          console.error('Error deleting symptom:', error);
+          alert('Error deleting symptom. Please try again.');
+        }
+      }
+
+      // Modal functionality
+      document.getElementById('add-symptom-btn').addEventListener('click', () => {
+        currentEditingId = null;
+        document.getElementById('modal-title').textContent = 'Add New Symptom';
+        document.getElementById('symptom-form').reset();
+        document.getElementById('save-btn').textContent = 'Save Symptom';
+        document.getElementById('symptom-modal').classList.add('show');
+      });
+
+      document.getElementById('close-modal').addEventListener('click', () => {
+        document.getElementById('symptom-modal').classList.remove('show');
+      });
+
+      document.getElementById('cancel-btn').addEventListener('click', () => {
+        document.getElementById('symptom-modal').classList.remove('show');
+      });
+
+      // Form submission
+      document.getElementById('symptom-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('symptom-name').value.trim();
+        const description = document.getElementById('symptom-description').value.trim();
+        
+        if (!name || !description) {
+          alert('Please fill in all fields');
+          return;
+        }
+
+        // Show loading state
+        const saveBtn = document.getElementById('save-btn');
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = 'Saving...';
+        saveBtn.disabled = true;
+        
+        try {
+          if (currentEditingId) {
+            await updateSymptom(currentEditingId, name, description);
+          } else {
+            await addSymptom(name, description);
+          }
+          
+          document.getElementById('symptom-modal').classList.remove('show');
+          document.getElementById('symptom-form').reset();
+        } catch (error) {
+          console.error('Error saving symptom:', error);
+        } finally {
+          saveBtn.textContent = originalText;
+          saveBtn.disabled = false;
+        }
+      });
+
+      // Close modal when clicking outside
+      document.getElementById('symptom-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'symptom-modal') {
+          document.getElementById('symptom-modal').classList.remove('show');
+        }
+      });
+
+      // Load symptoms when page loads
+      window.addEventListener('load', () => {
+        setTimeout(loadSymptoms, 1000); // Give Firebase time to initialize
+      });
+
+      // Make functions global for onclick handlers
+      window.editSymptom = editSymptom;
+      window.deleteSymptom = deleteSymptom;
+    </script>
 </body>
 </html>
