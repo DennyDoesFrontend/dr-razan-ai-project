@@ -5,19 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Razan</title>
     <link rel="icon" type="image/x-icon" href="/logo-design.png">
-      <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Updated Firebase v9+ modular SDK -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script type="module">
-      // Import the functions you need from the SDKs you need
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
       import { 
         getFirestore, 
@@ -27,19 +19,20 @@
         doc, 
         deleteDoc, 
         updateDoc,
+        getDoc,
         orderBy,
         query,
         serverTimestamp
       } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
 
       // Your web app's Firebase configuration
-       const firebaseConfig = {
+      const firebaseConfig = {
         apiKey: "AIzaSyB084-ENowSoOexW2qMDdP5y2fntGqwU4o",
         authDomain: "razanai-677f7.firebaseapp.com",
         projectId: "razanai-677f7",
         storageBucket: "razanai-677f7.firebasestorage.app",
         messagingSenderId: "1013191736728",
-        appId: "1:1013191736728:web:fa8424a8026279ad663fed",
+        appId: "1:1013191736728:web:fa8424a8026279ad663fed"
       };
 
       // Initialize Firebase
@@ -52,6 +45,7 @@
         collection,
         addDoc,
         getDocs,
+        getDoc,
         doc,
         deleteDoc,
         updateDoc,
@@ -60,10 +54,16 @@
         serverTimestamp
       };
     </script>
-    <link rel="stylesheet" href="./src/style.css" />
-     <style>
-        *{
+    <style>
+        * {
             font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f8fafc;
         }
         
         .fade-in {
@@ -100,121 +100,234 @@
             max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+
+        .nav {
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            color: #374151;
+            padding: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            min-width: 120px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+
+        .nav-item:hover {
+            color: #374151;
+        }
+
+        .nav-item.active {
+            background-color: #2563eb;
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .symptom-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 0.75rem;
+            transition: box-shadow 0.2s;
+            flex: 1;
+            min-width: 300px;
+            max-width: fit-content;
+        }
+
+        .symptom-card:hover {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9fafb;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            transition: color 0.2s;
+            font-size: 1.125rem;
+        }
+
+        .icon-btn:hover {
+            opacity: 0.8;
+        }
+
+        .text-blue { color: #2563eb; }
+        .text-red { color: #dc2626; }
+        .text-slate { color: #64748b; }
+        .text-gray { color: #374151; }
     </style>
 </head>
-    <body class="bg-white">
-    <main class="flex items-center w-screen h-screen">
-      <nav
-        class="h-[100%] bg-white border-r border-slate-300 text-gray-800 py-4 flex flex-col items-center justify-between shadow-sm min-w-[120px]"
-      >
-        <div class="flex flex-col gap-5 items-center text-xs">
-          <img src="/logo-design.png" alt="logo" class="max-w-[60px]" />
-          <span class="flex flex-col items-center leading-4"
-            ><i
-              class="ri-chat-voice-ai-line font-thin text-2xl text-slate-500 hover:text-gray-800 px-1 rounded-sm cursor-pointer transition-colors"
-             onclick="navigateTo('chatbot.html')"></i
-           ><span class="mt-1 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors">Chat</span></span
-          >
-          <span onclick="navigateTo('health_news.html')"
-            class="flex flex-col items-center font-thin leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
-            ><i class="ri-news-line text-2xl"></i><span class="mt-1">Discover</span></span
-          >
-          <span
-            class="flex flex-col items-center font-thin leading-4 bg-blue-600 text-white px-2 py-1 rounded-lg cursor-pointer" 
-            ><i class="ri-file-list-3-line text-2xl"></i><span class="mt-1 font-medium">Notebook</span></span
-          >
+<body>
+    <main style="display: flex; width: 100vw; height: 100vh;">
+      <nav class="nav">
+        <div style="display: flex; flex-direction: column; gap: 1.25rem; align-items: center;">
+          <img src="/logo-design.png" alt="logo" style="max-width: 60px;">
+          <div class="nav-item" onclick="navigateTo('chatbot.html')">
+            <i class="ri-chat-voice-ai-line"></i>
+            <span>Chat</span>
+          </div>
+          <div class="nav-item" onclick="navigateTo('health_news.html')">
+            <i class="ri-news-line"></i>
+            <span>Discover</span>
+          </div>
+          <div class="nav-item active">
+            <i class="ri-file-list-3-line"></i>
+            <span>Notebook</span>
+          </div>
         </div>
-        <span
-          class="flex flex-col items-center font-thin text-xs leading-4 text-slate-500 hover:text-gray-800 cursor-pointer transition-colors"
-          ><i class="ri-account-pin-circle-line text-2xl"></i><span class="mt-1">Account</span></span
-        >
+        <div class="nav-item">
+          <i class="ri-account-pin-circle-line"></i>
+          <span>Account</span>
+        </div>
       </nav>
 
-    <!--notebook section-->
-    <div class="flex-1 h-full p-8 overflow-y-auto bg-white">
-        <div class="w-full max-w-6xl mx-auto fade-in">
-          <div class="mb-8">
-            <h1 class="text-4xl font-semibold text-[#222831] mb-2">Symptom Notebook</h1>
-            <p class="text-[#393E46] text-lg">Track and monitor your symptoms over time</p>
+      <!-- Notebook section -->
+      <div style="flex: 1; height: 100%; padding: 2rem; overflow-y: auto; background: white;">
+        <div style="width: 100%; max-width: 72rem; margin: 0 auto;" class="fade-in">
+          <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Symptom Notebook</h1>
+            <p style="color: #6b7280; font-size: 1.125rem;">Track and monitor your symptoms over time</p>
           </div>
 
-<!--  filters
-    <div class="flex gap-4 mb-0.5">
-      <select class="filter-btn px-6 py-3 rounded-lg text-sm font-medium bg-slate-100 border border-slate-300 cursor-pointer text-gray-800">
-      <option value="today">Today</option>
-      <option value="yesterday">Yesterday</option>
-      <option value="this-week">This Week</option>
-      <option value="this-month">This Month</option>
-      <option value="all-time">All Time</option>
-      </select>
-    </div> -->
+          <!-- Symptoms grid layout -->
+          <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;" id="symptoms-container">
+            <!-- Symptom cards will be loaded here dynamically -->
+          </div>
 
-    <!--symptoms grid layout-->
-    <div class="flex justify-between gap-4 flex-wrap" id="symptoms-container">
-      <!--the symptom cards will be loaded here dynamically-->
-    </div>
-
-    <!-- Add New Symptom Button -->
-    <div class="mt-8 flex justify-center">
-      <button id="add-symptom-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
-        <i class="ri-add-line text-lg"></i>
-        Add New Symptom
-      </button>
-    </div>
-
-    </div>
-    </div>
+          <!-- Add New Symptom Button -->
+          <div style="margin-top: 2rem; display: flex; justify-content: center;">
+            <button id="add-symptom-btn" class="btn btn-primary">
+              <i class="ri-add-line"></i>
+              Add New Symptom
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <!-- Add/Edit Symptom Modal -->
     <div id="symptom-modal" class="modal">
       <div class="modal-content">
-        <div class="flex justify-between items-center mb-6">
-          <h2 id="modal-title" class="text-2xl font-semibold text-gray-800">Add New Symptom</h2>
-          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
-            <i class="ri-close-line text-2xl"></i>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2 id="modal-title" style="font-size: 1.5rem; font-weight: 600; color: #1f2937;">Add New Symptom</h2>
+          <button id="close-modal" class="icon-btn text-slate">
+            <i class="ri-close-line" style="font-size: 1.5rem;"></i>
           </button>
         </div>
         
         <form id="symptom-form">
-          <div class="mb-4">
-            <label for="symptom-name" class="block text-sm font-medium text-gray-700 mb-2">Symptom Name</label>
-            <input type="text" id="symptom-name" name="name" required 
-                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <div class="form-group">
+            <label for="symptom-name" class="form-label">Symptom Name</label>
+            <input type="text" id="symptom-name" name="name" required class="form-input">
           </div>
           
-          <div class="mb-6">
-            <label for="symptom-description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-            <textarea id="symptom-description" name="description" rows="4" required
-                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          <div class="form-group">
+            <label for="symptom-description" class="form-label">Description</label>
+            <textarea id="symptom-description" name="description" rows="4" required class="form-input"></textarea>
           </div>
           
-          <div class="flex gap-3 justify-end">
-            <button type="button" id="cancel-btn" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-              Cancel
-            </button>
-            <button type="submit" id="save-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              Save Symptom
-            </button>
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
+            <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+            <button type="submit" id="save-btn" class="btn btn-primary">Save Symptom</button>
           </div>
         </form>
       </div>
     </div>
 
-    <script src="/src/main.js"></script>
     <script>
       let currentEditingId = null;
-      
-      function navigateTo(page){
+      let symptomsData = new Map(); // Store symptoms data locally for easier access
+
+      function navigateTo(page) {
         window.location.href = page;
       }
 
-      //time of adding symptom
+      // Time formatting for symptoms
       function formatTime(timestamp) {
-        if (!timestamp) return '11:29am';
-        
-        const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-        return date.toLocaleTimeString('en-US', { 
+        if (!timestamp || !timestamp.toDate) return 'Unknown time';
+        const date = timestamp.toDate();
+        if (isNaN(date.getTime())) return 'Unknown time';
+        return date.toLocaleString('en-US', { 
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
           hour: 'numeric', 
           minute: '2-digit',
           hour12: true 
@@ -225,41 +338,50 @@
       async function loadSymptoms() {
         try {
           const symptomsContainer = document.getElementById('symptoms-container');
-          
           const { collection, getDocs, orderBy, query } = window.firestoreFunctions;
           const q = query(collection(window.db, 'symptoms'), orderBy('timestamp', 'desc'));
           const querySnapshot = await getDocs(q);
           
           symptomsContainer.innerHTML = '';
+          symptomsData.clear();
           
           querySnapshot.forEach((doc) => {
             const symptom = doc.data();
+            symptomsData.set(doc.id, symptom); // Store data locally
             const symptomCard = createSymptomCard(doc.id, symptom);
             symptomsContainer.appendChild(symptomCard);
           });
+
+          if (querySnapshot.empty) {
+            symptomsContainer.innerHTML = `
+              <div style="text-align: center; padding: 3rem; color: #6b7280; width: 100%;">
+                <i class="ri-file-list-3-line" style="font-size: 4rem; margin-bottom: 1rem; display: block;"></i>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">No symptoms recorded yet</h3>
+                <p>Start tracking your symptoms by adding your first entry.</p>
+              </div>
+            `;
+          }
         } catch (error) {
           console.error('Error loading symptoms:', error);
+          alert('Error loading symptoms. Please try again.');
         }
       }
 
       // Create symptom card element
       function createSymptomCard(id, symptom) {
         const card = document.createElement('div');
-        card.className = 'bg-white border border-slate-300 flex-1 rounded-lg hover:shadow-lg p-4 mt-3 symptom-card max-w-fit min-w-[300px] transition-shadow';
+        card.className = 'symptom-card';
         
         card.innerHTML = `
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="text-lg font-semibold text-gray-800">${symptom.name}</h3>
-            <!--time of report-->
-            <span class="text-xs text-slate-500 px-3 py-1 bg-slate-100 rounded-full">${formatTime(symptom.timestamp)}</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937;">${symptom.name}</h3>
+            <span style="font-size: 0.75rem; color: #64748b; padding: 0.25rem 0.75rem; background: #f1f5f9; border-radius: 9999px;">${formatTime(symptom.timestamp)}</span>
           </div>
-          <!--description-->
-          <p class="text-[#393E46] mb-4">${symptom.description}</p>
-          <!--buttons-->
-          <div class="flex items-center justify-between">
-            <div class="flex gap-3 items-center">
-              <i class="ri-edit-line text-blue-600 cursor-pointer hover:text-blue-700 transition-colors text-lg" onclick="editSymptom('${id}')"></i>
-              <i class="ri-delete-bin-line text-slate-500 cursor-pointer hover:text-red-500 transition-colors text-lg" onclick="deleteSymptom('${id}')"></i>
+          <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">${symptom.description}</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <i class="ri-edit-line icon-btn text-blue" onclick="editSymptom('${id}')" title="Edit symptom"></i>
+              <i class="ri-delete-bin-line icon-btn text-red" onclick="deleteSymptom('${id}')" title="Delete symptom"></i>
             </div>
           </div>
         `;
@@ -278,31 +400,46 @@
             timestamp: serverTimestamp()
           });
           
-          loadSymptoms(); // Reload symptoms
+          loadSymptoms();
         } catch (error) {
           console.error('Error adding symptom:', error);
           alert('Error adding symptom. Please try again.');
         }
       }
 
-      // Edit symptom
+      // Edit symptom - Fixed to use local data
       async function editSymptom(id) {
         try {
-          const { doc, getDoc } = window.firestoreFunctions;
-          const docRef = doc(window.db, 'symptoms', id);
-          const docSnap = await getDoc(docRef);
+          const symptom = symptomsData.get(id);
           
-          if (docSnap.exists()) {
-            const symptom = docSnap.data();
+          if (symptom) {
             currentEditingId = id;
             document.getElementById('modal-title').textContent = 'Edit Symptom';
             document.getElementById('symptom-name').value = symptom.name;
             document.getElementById('symptom-description').value = symptom.description;
             document.getElementById('save-btn').textContent = 'Update Symptom';
             document.getElementById('symptom-modal').classList.add('show');
+          } else {
+            // Fallback to Firestore if not found locally
+            const { doc, getDoc } = window.firestoreFunctions;
+            const docRef = doc(window.db, 'symptoms', id);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+              const symptom = docSnap.data();
+              currentEditingId = id;
+              document.getElementById('modal-title').textContent = 'Edit Symptom';
+              document.getElementById('symptom-name').value = symptom.name;
+              document.getElementById('symptom-description').value = symptom.description;
+              document.getElementById('save-btn').textContent = 'Update Symptom';
+              document.getElementById('symptom-modal').classList.add('show');
+            } else {
+              alert('Symptom not found');
+            }
           }
         } catch (error) {
           console.error('Error loading symptom for edit:', error);
+          alert('Error loading symptom. Please try again.');
         }
       }
 
@@ -316,7 +453,7 @@
             description: description
           });
           
-          loadSymptoms(); // Reload symptoms
+          loadSymptoms();
         } catch (error) {
           console.error('Error updating symptom:', error);
           alert('Error updating symptom. Please try again.');
@@ -334,7 +471,7 @@
           
           await deleteDoc(doc(window.db, 'symptoms', id));
           
-          loadSymptoms(); // Reload symptoms
+          loadSymptoms();
         } catch (error) {
           console.error('Error deleting symptom:', error);
           alert('Error deleting symptom. Please try again.');
@@ -370,7 +507,6 @@
           return;
         }
 
-        // Show loading state
         const saveBtn = document.getElementById('save-btn');
         const originalText = saveBtn.textContent;
         saveBtn.textContent = 'Saving...';
@@ -387,6 +523,7 @@
           document.getElementById('symptom-form').reset();
         } catch (error) {
           console.error('Error saving symptom:', error);
+          alert('Error saving symptom. Please try again.');
         } finally {
           saveBtn.textContent = originalText;
           saveBtn.disabled = false;
@@ -402,7 +539,10 @@
 
       // Load symptoms when page loads
       window.addEventListener('load', () => {
-        setTimeout(loadSymptoms, 1000); // Give Firebase time to initialize
+        // Add a small delay to ensure Firebase is fully initialized
+        setTimeout(() => {
+          loadSymptoms();
+        }, 100);
       });
 
       // Make functions global for onclick handlers
