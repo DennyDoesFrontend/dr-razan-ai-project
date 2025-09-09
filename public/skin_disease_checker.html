@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RazanAI - Symptom Checker</title>
+    <link rel="icon" type="image/x-icon" href="/logo-design.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-gray-100 text-[#13343b]">
+    <!-- 🔹 Header / Navbar (reuse your existing navbar style) -->
+    <header class="p-4 shadow bg-white flex justify-between items-center">
+      <h1 class="font-bold text-xl">🩺 Symptom Checker</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="chat.html" class="hover:underline">Chat</a>
+        <a href="symptom-checker.html" class="font-semibold underline"
+          >Symptom Checker</a
+        >
+      </nav>
+    </header>
+
+    <!-- 🔹 Main Content -->
+    <main class="p-6 max-w-2xl mx-auto space-y-6">
+      <h2 class="text-2xl font-bold">Describe Your Symptoms</h2>
+      <p class="text-gray-600">
+        You can type, speak, or upload a photo of your symptoms for analysis.
+      </p>
+
+      <!-- 📝 Text Input -->
+      <div class="space-y-2">
+        <label for="symptomText" class="font-medium">Text Input</label>
+        <textarea
+          id="symptomText"
+          placeholder="E.g. I feel dizzy and my chest hurts..."
+          class="border rounded-xl p-3 w-full"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <!-- 🎙️ Voice Input -->
+      <div class="space-y-2">
+        <label class="font-medium">Voice Input</label><br />
+        <button
+          id="voiceBtn"
+          class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700"
+        >
+          🎤 Speak Symptoms
+        </button>
+      </div>
+
+      <!-- 📸 Image Upload -->
+      <div class="space-y-2">
+        <label for="imageUpload" class="font-medium">Upload a Photo</label>
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          class="border p-2 rounded-xl w-full"
+        />
+      </div>
+
+      <!-- ✅ Submit -->
+      <div class="pt-4">
+        <button
+          id="submitBtn"
+          class="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700"
+        >
+          Analyze Symptoms
+        </button>
+      </div>
+
+      <!-- 📊 Results -->
+      <div
+        id="resultBox"
+        class="mt-6 p-4 border rounded-xl bg-white shadow hidden"
+      ></div>
+    </main>
+
+    <!-- 🔹 Script -->
+    <script>
+      const symptomText = document.getElementById("symptomText");
+      const voiceBtn = document.getElementById("voiceBtn");
+      const imageUpload = document.getElementById("imageUpload");
+      const submitBtn = document.getElementById("submitBtn");
+      const resultBox = document.getElementById("resultBox");
+
+      // 🎙️ Voice input (Web Speech API)
+      voiceBtn.addEventListener("click", () => {
+        const recognition = new (window.SpeechRecognition ||
+          window.webkitSpeechRecognition)();
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = (event) => {
+          symptomText.value = event.results[0][0].transcript;
+        };
+
+        recognition.onerror = (err) => {
+          alert("Voice input error: " + err.error);
+        };
+      });
+
+      // ✅ Submit symptoms
+      submitBtn.addEventListener("click", async () => {
+        const text = symptomText.value.trim();
+        const file = imageUpload.files[0];
+
+        const formData = new FormData();
+        formData.append("symptoms", text);
+        if (file) formData.append("image", file);
+
+        try {
+          const res = await fetch("http://127.0.0.1:8000/multimodal", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!res.ok) throw new Error("Failed to analyze");
+
+          const data = await res.json();
+          resultBox.textContent = JSON.stringify(data, null, 2);
+          resultBox.classList.remove("hidden");
+        } catch (err) {
+          console.error(err);
+          alert("Error: " + err.message);
+        }
+      });
+    </script>
+  </body>
+</html>

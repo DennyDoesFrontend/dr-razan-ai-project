@@ -20,10 +20,71 @@ navToggle.addEventListener("click", openNav);
 navClose.addEventListener("click", closeNav);
 navOverlay.addEventListener("click", closeNav);
 
-// Close nav on escape key
+// Logout modal functionality
+const accountBtn = document.getElementById("accountBtn");
+const logoutOverlay = document.getElementById("logoutOverlay");
+const logoutClose = document.querySelector(".logout-close");
+const logoutCancel = document.querySelector(".logout-cancel");
+const logoutConfirm = document.querySelector(".logout-confirm");
+
+function openLogoutModal() {
+  logoutOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLogoutModal() {
+  logoutOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function handleLogout() {
+  // Close the modal first
+  closeLogoutModal();
+
+  // Show a brief loading message (optional)
+  console.log("Logging out user...");
+
+  // Here you can add your logout logic:
+  // - Clear localStorage/sessionStorage
+  // - Make API call to logout endpoint
+  // - Redirect to login page
+
+  // Example logout actions:
+  localStorage.clear(); // Clear any stored user data
+  sessionStorage.clear(); // Clear session data
+
+  // Simulate a brief delay for better UX
+  setTimeout(() => {
+    // Redirect to login page (replace with your actual login page)
+    window.location.href = "/login.html"; // or wherever your login page is
+
+    // Alternative: reload the page if no specific login page
+    // window.location.reload();
+  }, 300);
+}
+
+// Event listeners for logout modal
+accountBtn.addEventListener("click", openLogoutModal);
+logoutClose.addEventListener("click", closeLogoutModal);
+logoutCancel.addEventListener("click", closeLogoutModal);
+logoutConfirm.addEventListener("click", handleLogout);
+
+// Close modal when clicking outside
+logoutOverlay.addEventListener("click", (e) => {
+  if (e.target === logoutOverlay) {
+    closeLogoutModal();
+  }
+});
+
+// Close nav and logout modal on escape key
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && navbar.classList.contains("open")) {
-    closeNav();
+  if (e.key === "Escape") {
+    if (navbar.classList.contains("open")) {
+      closeNav();
+    }
+    if (logoutOverlay.classList.contains("show")) {
+      closeLogoutModal();
+    }
   }
 });
 
